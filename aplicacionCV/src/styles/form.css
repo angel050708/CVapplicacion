@@ -1,6 +1,3 @@
-/* Controles del editor. Esquinas casi rectas (2px) a propósito: es papelería,
-   no una app de consumo con radios de 16px. */
-
 .form {
   display: flex;
   flex-direction: column;
@@ -32,8 +29,6 @@
   padding-top: 0.25rem;
 }
 
-/* --- Campo --------------------------------------------------------------- */
-
 .field {
   display: flex;
   flex-direction: column;
@@ -55,7 +50,7 @@
 
 .field__control {
   width: 100%;
-  min-height: 2.75rem; /* 44px: objetivo táctil mínimo */
+  min-height: 2.75rem; /* 44px, objetivo táctil mínimo */
   padding: 0.5rem 0.6875rem;
   background: var(--surface);
   color: var(--ink);
@@ -96,7 +91,6 @@ input[type='month'].field__control {
   font-variant-numeric: tabular-nums;
 }
 
-/* El error vive junto al campo, nunca solo arriba del formulario. */
 .field__error {
   display: flex;
   align-items: center;
@@ -113,8 +107,6 @@ input[type='month'].field__control {
   font-size: 0.75rem;
   color: var(--ink-faint);
 }
-
-/* --- Rango de fechas ----------------------------------------------------- */
 
 .daterange__current {
   display: inline-flex;
@@ -133,8 +125,6 @@ input[type='month'].field__control {
   accent-color: var(--accent);
   cursor: pointer;
 }
-
-/* --- Botones ------------------------------------------------------------- */
 
 .btn {
   display: inline-flex;
@@ -204,7 +194,6 @@ input[type='month'].field__control {
   background: var(--accent-soft);
 }
 
-/* Botón de icono cuadrado: mantiene los 44px sin ensanchar la cabecera. */
 .btn--icon {
   padding: 0;
   width: 2.75rem;
@@ -216,8 +205,6 @@ input[type='month'].field__control {
   font-size: 0.75rem;
 }
 
-/* Los botones de acción de una entrada son pequeños en visual pero el área
-   táctil se recupera con el padding vertical de la fila que los contiene. */
 .btn--sm.btn--icon {
   width: 2rem;
 }

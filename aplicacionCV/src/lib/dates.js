@@ -1,5 +1,3 @@
-/** Utilidades de fecha compartidas por el rail y la hoja. */
-
 const MONTHS = [
   'ene',
   'feb',
@@ -15,7 +13,6 @@ const MONTHS = [
   'dic',
 ]
 
-/** `"2023-04"` → `"abr 2023"`. Devuelve cadena vacía si el valor no es válido. */
 export function formatMonth(value) {
   if (!value) return ''
   const [year, month] = value.split('-')
@@ -24,10 +21,6 @@ export function formatMonth(value) {
   return `${MONTHS[index]} ${year}`
 }
 
-/**
- * Compone el rango que se imprime en la hoja.
- * `end === null` significa «en la actualidad».
- */
 export function formatRange(start, end) {
   const from = formatMonth(start)
   const to = end === null ? 'actualidad' : formatMonth(end)
@@ -37,8 +30,9 @@ export function formatRange(start, end) {
   return `${from} — ${to}`
 }
 
-/** Ordena de más reciente a más antiguo; «actualidad» va siempre arriba. */
+// Más reciente primero; «actualidad» siempre arriba.
 export function byMostRecent(a, b) {
-  const keyOf = (item) => (item.end === null ? '9999-99' : item.end || item.start)
+  const keyOf = (item) =>
+    item.end === null ? '9999-99' : item.end || item.start
   return keyOf(b).localeCompare(keyOf(a))
 }

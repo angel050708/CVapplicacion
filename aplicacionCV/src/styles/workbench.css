@@ -1,13 +1,8 @@
-/* Layout del taller: cabecera fina, rail de edición a la izquierda,
-   mesa con la hoja a la derecha. */
-
 .workbench {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
 }
-
-/* --- Cabecera ------------------------------------------------------------ */
 
 .masthead {
   display: flex;
@@ -26,8 +21,6 @@
   min-width: 0;
 }
 
-/* En pantallas estrechas el epígrafe se parte en dos líneas y desequilibra la
-   cabecera; ahí basta con el título. */
 @media (max-width: 26rem) {
   .masthead__mark .eyebrow {
     display: none;
@@ -52,8 +45,6 @@
   flex-shrink: 0;
 }
 
-/* --- Cuerpo -------------------------------------------------------------- */
-
 .workbench__body {
   flex: 1;
   display: grid;
@@ -72,8 +63,6 @@
     grid-template-columns: 29rem 1fr;
   }
 }
-
-/* --- Rail de edición ----------------------------------------------------- */
 
 .rail {
   background: var(--paper);
@@ -105,11 +94,13 @@
   max-width: 34ch;
 }
 
-.rail__reset {
-  margin-top: 1rem;
+.rail__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.5rem clamp(1rem, 3vw, 1.75rem);
 }
-
-/* --- Mesa + hoja --------------------------------------------------------- */
 
 .stage {
   background: var(--table);
@@ -121,7 +112,6 @@
   min-width: 0;
 }
 
-/* En móvil la hoja se pliega tras un conmutador para no empujar el editor. */
 .stage[data-collapsed='true'] {
   display: none;
 }
@@ -138,6 +128,7 @@
   .stage-toggle {
     display: none;
   }
+
   .stage[data-collapsed='true'] {
     display: flex;
   }

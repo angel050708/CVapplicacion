@@ -1,11 +1,8 @@
-/* La hoja: proporción A4, grano de papel y tipografía de documento.
-   Todo aquí imita composición impresa, no una tarjeta de dashboard. */
-
 .sheet {
   position: relative;
   width: min(100%, 48rem);
-  /* Con altura automática, aspect-ratio actúa como mínimo: la hoja arranca
-     con proporción A4 y crece si el contenido la desborda. */
+  /* Con altura automática, aspect-ratio actúa como mínimo: arranca en
+     proporción A4 y crece si el contenido la desborda. */
   aspect-ratio: 210 / 297;
   background: var(--paper);
   color: var(--ink);
@@ -15,7 +12,6 @@
   overflow: hidden;
 }
 
-/* Grano: SVG en data URI, sin peticiones de red. */
 .sheet::after {
   content: '';
   position: absolute;
@@ -31,17 +27,6 @@
   opacity: 0.05;
 }
 
-/* --- Cabecera de la hoja -------------------------------------------------- */
-
-.sheet__head {
-  position: relative;
-  padding-bottom: 1.5rem;
-  border-bottom: 2px solid var(--ink);
-}
-
-/* Lavado de acento que marca lo que acaba de cambiar. Es un elemento que se
-   monta nuevo en cada envío, así que su animación arranca siempre desde cero.
-   El movimiento indica causa-efecto; no es decoración. */
 .flash-wash {
   position: absolute;
   inset: -0.75rem;
@@ -59,6 +44,12 @@
   to {
     opacity: 0;
   }
+}
+
+.sheet__head {
+  position: relative;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--ink);
 }
 
 .sheet__head > *:not(.flash-wash) {
@@ -109,8 +100,6 @@
   color: var(--rule-strong);
 }
 
-/* --- Secciones de la hoja ------------------------------------------------- */
-
 .sheet-section {
   position: relative;
   margin-top: 2.25rem;
@@ -134,7 +123,6 @@
   color: var(--ink-muted);
 }
 
-/* El filete corre hasta el borde derecho: gesto de retícula editorial. */
 .sheet-section__title::after {
   content: '';
   flex: 1;
@@ -221,7 +209,6 @@
   background: var(--accent);
 }
 
-/* Marca de agua cuando la hoja aún no tiene contenido. */
 .sheet__blank {
   margin-top: 2.25rem;
   padding: 2rem 0;

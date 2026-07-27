@@ -2,10 +2,6 @@ import { useId } from 'react'
 import Icon from './Icon.jsx'
 import '../../styles/form.css'
 
-/**
- * Campo de texto controlado. La etiqueta siempre es visible (nunca solo
- * placeholder) y el error aparece pegado al campo, no en un resumen lejano.
- */
 export default function TextField({
   label,
   value,

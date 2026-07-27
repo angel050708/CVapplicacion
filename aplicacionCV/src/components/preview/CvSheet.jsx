@@ -1,10 +1,9 @@
 import { Fragment } from 'react'
 import SheetSection from './SheetSection.jsx'
 import FlashWash from './FlashWash.jsx'
-import { formatRange, byMostRecent } from '../../lib/dates.js'
+import { byMostRecent, formatRange } from '../../lib/dates.js'
 import '../../styles/sheet.css'
 
-/** Divide el textarea de responsabilidades en líneas imprimibles. */
 function toLines(text) {
   return text
     .split('\n')
@@ -13,7 +12,6 @@ function toLines(text) {
 }
 
 export default function CvSheet({ general, education, experience, flash }) {
-  // El token solo viaja a la sección que originó el último envío.
   const tokenFor = (section) =>
     flash && flash.section === section ? flash.token : null
 
@@ -35,8 +33,6 @@ export default function CvSheet({ general, education, experience, flash }) {
           <p className="sheet__contact">
             {contact.map((item, index) => (
               <Fragment key={item}>
-                {/* El separador es un hermano más del flex, no va dentro del
-                    dato: así el hueco a izquierda y derecha es el mismo. */}
                 {index > 0 && (
                   <span className="sheet__contact-sep" aria-hidden="true">
                     ·

@@ -1,21 +1,14 @@
-/* Ctrl+P imprime el currículum, no la aplicación.
-   Se retira todo el chrome del editor y la hoja pasa a ocupar la página. */
-
 @page {
   size: A4;
   margin: 14mm 15mm;
 }
 
-/* Los selectores llevan el prefijo `html` a propósito.
-   Cada componente importa su propio CSS, así que el orden de inyección depende
-   del orden de evaluación de los módulos y no es estable. Subir la
-   especificidad un escalón hace que estas anulaciones ganen siempre, se cargue
-   esta hoja antes o después que las demás. */
-
+/* Cada componente importa su propio CSS, así que el orden de inyección depende
+   del orden de evaluación de los módulos y no es estable. El prefijo `html`
+   sube un escalón de especificidad para que estas anulaciones ganen siempre. */
 @media print {
   :root,
   :root[data-theme='dark'] {
-    /* La impresión siempre va en tinta sobre papel, sea cual sea el tema. */
     --paper: #ffffff;
     --table: #ffffff;
     --ink: #000000;
@@ -57,7 +50,6 @@
     overflow: visible;
   }
 
-  /* El grano y el destello son ruido en papel real. */
   html .sheet::after,
   html .flash-wash {
     display: none;

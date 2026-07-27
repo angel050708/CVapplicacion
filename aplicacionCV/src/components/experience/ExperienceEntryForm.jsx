@@ -2,8 +2,9 @@ import { useState } from 'react'
 import TextField from '../ui/TextField.jsx'
 import DateRangeField from '../ui/DateRangeField.jsx'
 import Button from '../ui/Button.jsx'
-import { EMPTY_EXPERIENCE } from '../../lib/entries.js'
 import '../../styles/form.css'
+
+const EMPTY = { company: '', role: '', duties: '', start: '', end: '' }
 
 function validate(draft) {
   const errors = {}
@@ -15,9 +16,8 @@ function validate(draft) {
   return errors
 }
 
-/** Formulario de una entrada laboral, compartido entre alta y edición. */
 export default function ExperienceEntryForm({
-  initial = EMPTY_EXPERIENCE,
+  initial = EMPTY,
   onSave,
   onCancel,
   submitLabel = 'Enviar',

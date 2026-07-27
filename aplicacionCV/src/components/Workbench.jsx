@@ -1,18 +1,11 @@
 import { useEffect, useState } from 'react'
 import Button from './ui/Button.jsx'
 import '../styles/workbench.css'
-import '../styles/print.css'
 
 function readInitialTheme() {
-  if (typeof document === 'undefined') return 'light'
   return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
 }
 
-/**
- * Layout del taller: cabecera fina, rail de edición a la izquierda y la mesa
- * con la hoja a la derecha. En pantallas estrechas la hoja se pliega tras un
- * conmutador para que el editor no quede empujado hacia abajo.
- */
 export default function Workbench({ rail, sheet }) {
   const [theme, setTheme] = useState(readInitialTheme)
   const [sheetOpen, setSheetOpen] = useState(false)

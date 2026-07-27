@@ -1,16 +1,45 @@
-# React + Vite
+# Currículum — taller de composición
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Editor de currículums. A la izquierda se rellenan los datos; a la derecha se
+compone la hoja en tiempo real, con proporción A4 y lista para imprimir.
 
-Currently, two official plugins are available:
+Cada sección alterna entre formulario y lectura: **Enviar** retira los campos y
+compone el texto en la hoja, **Editar** los devuelve con lo ya escrito para
+corregirlo y reenviarlo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Implementa el proyecto [CV Application](https://www.theodinproject.com/lessons/node-path-react-new-cv-application)
+de The Odin Project.
 
-## React Compiler
+## Uso
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run lint
+npm run build
+```
 
-## Expanding the ESLint configuration
+`Ctrl+P` imprime solo el currículum, sin la interfaz del editor.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Estructura
+
+```
+src/
+  App.jsx              estado del currículum y sus manejadores
+  components/
+    Workbench.jsx      layout, tema claro/oscuro, impresión
+    general/           sección 1: datos personales
+    education/         sección 2: formación
+    experience/        sección 3: experiencia
+    preview/           la hoja compuesta
+    ui/                campos, botones y el armazón de sección
+  lib/                 formato de fechas y datos de ejemplo
+  styles/              una hoja por componente, más tokens e impresión
+```
+
+Todo el currículum vive en `App.jsx` y baja por props. Es deliberado: el
+ejercicio practica state y props, así que no hay context ni gestores de estado
+externos.
+
+Stack: React 19, Vite y Tailwind v4 para los tokens, con CSS propio por
+componente.

@@ -1,11 +1,6 @@
 import Icon from './Icon.jsx'
 import '../../styles/section.css'
 
-/**
- * Envoltura común de las tres secciones del rail: numeración de imprenta,
- * título en versalitas, hueco para acciones y una línea de estado que se
- * anuncia a los lectores de pantalla tras enviar.
- */
 export default function SectionShell({
   number,
   title,

@@ -2,13 +2,8 @@ import { useId } from 'react'
 import TextField from './TextField.jsx'
 import '../../styles/form.css'
 
-/**
- * Par de fechas «desde / hasta». Marcar «en la actualidad» vacía y deshabilita
- * la fecha final en lugar de ocultarla, para que el layout no salte.
- *
- * Se usa `type="month"` porque en un CV el día es ruido: así el teclado móvil
- * correcto aparece solo y el valor queda normalizado a AAAA-MM.
- */
+// end === null significa «sigo aquí»: el campo se vacía y se deshabilita en
+// lugar de ocultarse, para que el layout no salte.
 export default function DateRangeField({ start, end, onChange, errors = {} }) {
   const currentId = useId()
   const isCurrent = end === null

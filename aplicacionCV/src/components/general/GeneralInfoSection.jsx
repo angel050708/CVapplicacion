@@ -8,20 +8,14 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function validate(draft) {
   const errors = {}
-  if (!draft.name.trim()) errors.name = 'Necesitamos un nombre para encabezar la hoja.'
+  if (!draft.name.trim())
+    errors.name = 'Necesitamos un nombre para encabezar la hoja.'
   if (!draft.email.trim()) errors.email = 'Sin correo no hay forma de contestarte.'
   else if (!EMAIL_RE.test(draft.email.trim()))
     errors.email = 'Ese correo no tiene una forma válida.'
   return errors
 }
 
-/**
- * Sección 1 — información general.
- *
- * Alterna entre formulario y lectura. El borrador vive aquí en local y solo
- * sube al estado de App al enviar, de modo que cancelar una edición no deja
- * rastro en la hoja.
- */
 export default function GeneralInfoSection({
   value,
   editing,
@@ -33,7 +27,6 @@ export default function GeneralInfoSection({
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('')
 
-  // Al entrar en edición, el formulario se rellena con lo ya enviado.
   function startEditing() {
     setDraft(value)
     setErrors({})

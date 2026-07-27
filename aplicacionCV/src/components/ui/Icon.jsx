@@ -1,8 +1,3 @@
-/**
- * Una sola familia de iconos, dibujada a mano en SVG: mismo viewBox, mismo
- * grosor de trazo (1.5) y mismos remates. Nada de emoji como icono.
- */
-
 const PATHS = {
   edit: (
     <>

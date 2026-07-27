@@ -1,18 +1,12 @@
 @import 'tailwindcss';
-
-/* ---------------------------------------------------------------------------
-   Tokens de tema.
-   Se declaran como custom properties de runtime para que el conmutador de tema
-   funcione sin recompilar, y se exponen a Tailwind con `@theme inline` (inline
-   hace que las utilidades emitan `var(--x)` en vez del valor resuelto).
-   --------------------------------------------------------------------------- */
+@import './print.css';
 
 :root {
-  --paper: #fbf8f2; /* la hoja */
-  --table: #efe9dd; /* la mesa bajo la hoja */
-  --surface: #f4efe5; /* controles del editor */
+  --paper: #fbf8f2;
+  --table: #efe9dd;
+  --surface: #f4efe5;
   --surface-raised: #fbf8f2;
-  --rule: #ddd5c7; /* filetes de 1px */
+  --rule: #ddd5c7;
   --rule-strong: #c6bba7;
   --ink: #16130f;
   --ink-muted: #6d6455;
@@ -42,6 +36,8 @@
   --shadow-sheet: 0 1px 1px rgb(0 0 0 / 0.3), 0 16px 40px -12px rgb(0 0 0 / 0.6);
 }
 
+/* `inline` hace que las utilidades emitan var(--x) en vez del valor resuelto,
+   así el conmutador de tema funciona sin recompilar. */
 @theme inline {
   --color-paper: var(--paper);
   --color-table: var(--table);
@@ -57,13 +53,10 @@
   --font-chrome: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* ---------------------------------------------------------------------------
-   Base
-   --------------------------------------------------------------------------- */
-
 html {
   color-scheme: light;
 }
+
 :root[data-theme='dark'] {
   color-scheme: dark;
 }
@@ -80,7 +73,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Un único anillo de foco para toda la app: acento, con holgura. */
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -92,13 +84,11 @@ body {
   color: var(--accent-ink);
 }
 
-/* Cifras tabulares en todo lo que sea dato: fechas, numeración de sección. */
 .tnum {
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1;
 }
 
-/* Etiqueta versalita del chrome del editor. */
 .eyebrow {
   font-family: var(--font-chrome);
   font-size: 0.6875rem;

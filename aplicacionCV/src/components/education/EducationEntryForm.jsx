@@ -2,8 +2,9 @@ import { useState } from 'react'
 import TextField from '../ui/TextField.jsx'
 import DateRangeField from '../ui/DateRangeField.jsx'
 import Button from '../ui/Button.jsx'
-import { EMPTY_EDUCATION } from '../../lib/entries.js'
 import '../../styles/form.css'
+
+const EMPTY = { school: '', degree: '', start: '', end: '' }
 
 function validate(draft) {
   const errors = {}
@@ -15,12 +16,8 @@ function validate(draft) {
   return errors
 }
 
-/**
- * Formulario de una entrada educativa. Se usa igual para crear y para editar:
- * la diferencia es únicamente el `initial` que recibe por props.
- */
 export default function EducationEntryForm({
-  initial = EMPTY_EDUCATION,
+  initial = EMPTY,
   onSave,
   onCancel,
   submitLabel = 'Enviar',

@@ -1,6 +1,5 @@
 import '../../styles/section.css'
 
-/** Estado vacío con texto que explica qué hacer, no un «sin elementos». */
 export default function EmptyState({ title, children }) {
   return (
     <div className="empty-state">
