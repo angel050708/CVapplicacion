@@ -1,0 +1,79 @@
+/* Ctrl+P imprime el currículum, no la aplicación.
+   Se retira todo el chrome del editor y la hoja pasa a ocupar la página. */
+
+@page {
+  size: A4;
+  margin: 14mm 15mm;
+}
+
+/* Los selectores llevan el prefijo `html` a propósito.
+   Cada componente importa su propio CSS, así que el orden de inyección depende
+   del orden de evaluación de los módulos y no es estable. Subir la
+   especificidad un escalón hace que estas anulaciones ganen siempre, se cargue
+   esta hoja antes o después que las demás. */
+
+@media print {
+  :root,
+  :root[data-theme='dark'] {
+    /* La impresión siempre va en tinta sobre papel, sea cual sea el tema. */
+    --paper: #ffffff;
+    --table: #ffffff;
+    --ink: #000000;
+    --ink-muted: #3a3a3a;
+    --ink-faint: #5a5a5a;
+    --rule: #c9c9c9;
+    --rule-strong: #9a9a9a;
+    --accent: #000000;
+    color-scheme: light;
+  }
+
+  html body {
+    background: #fff;
+  }
+
+  html .masthead,
+  html .rail,
+  html .stage-toggle {
+    display: none;
+  }
+
+  html .workbench__body {
+    display: block;
+  }
+
+  html .stage {
+    display: block;
+    padding: 0;
+    background: #fff;
+  }
+
+  html .sheet {
+    width: 100%;
+    max-width: none;
+    aspect-ratio: auto;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    overflow: visible;
+  }
+
+  /* El grano y el destello son ruido en papel real. */
+  html .sheet::after,
+  html .flash-wash {
+    display: none;
+  }
+
+  html .sheet-section,
+  html .sheet-entry {
+    break-inside: avoid;
+    animation: none;
+  }
+
+  html .sheet-section:first-of-type {
+    margin-top: 1.5rem;
+  }
+
+  html .sheet__contact a {
+    text-decoration: none;
+  }
+}

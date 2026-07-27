@@ -1,0 +1,144 @@
+/* Layout del taller: cabecera fina, rail de edición a la izquierda,
+   mesa con la hoja a la derecha. */
+
+.workbench {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+/* --- Cabecera ------------------------------------------------------------ */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.875rem clamp(1rem, 3vw, 2rem);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead__mark {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+/* En pantallas estrechas el epígrafe se parte en dos líneas y desequilibra la
+   cabecera; ahí basta con el título. */
+@media (max-width: 26rem) {
+  .masthead__mark .eyebrow {
+    display: none;
+  }
+}
+
+.masthead__title {
+  margin: 0;
+  font-family: var(--font-document);
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+.masthead__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* --- Cuerpo -------------------------------------------------------------- */
+
+.workbench__body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 0;
+}
+
+@media (min-width: 64rem) {
+  .workbench__body {
+    grid-template-columns: 26rem 1fr;
+  }
+}
+
+@media (min-width: 90rem) {
+  .workbench__body {
+    grid-template-columns: 29rem 1fr;
+  }
+}
+
+/* --- Rail de edición ----------------------------------------------------- */
+
+.rail {
+  background: var(--paper);
+  border-right: 1px solid var(--rule);
+  min-width: 0;
+}
+
+@media (min-width: 64rem) {
+  .rail {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+.rail__intro {
+  padding: 1.5rem clamp(1rem, 3vw, 1.75rem) 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rail__intro p {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 34ch;
+}
+
+.rail__reset {
+  margin-top: 1rem;
+}
+
+/* --- Mesa + hoja --------------------------------------------------------- */
+
+.stage {
+  background: var(--table);
+  padding: clamp(1rem, 4vw, 3rem) clamp(0.75rem, 3vw, 2rem)
+    clamp(3rem, 6vw, 5rem);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* En móvil la hoja se pliega tras un conmutador para no empujar el editor. */
+.stage[data-collapsed='true'] {
+  display: none;
+}
+
+.stage-toggle {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--table);
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 64rem) {
+  .stage-toggle {
+    display: none;
+  }
+  .stage[data-collapsed='true'] {
+    display: flex;
+  }
+}

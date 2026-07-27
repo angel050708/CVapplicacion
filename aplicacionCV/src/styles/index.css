@@ -1,0 +1,131 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Tokens de tema.
+   Se declaran como custom properties de runtime para que el conmutador de tema
+   funcione sin recompilar, y se exponen a Tailwind con `@theme inline` (inline
+   hace que las utilidades emitan `var(--x)` en vez del valor resuelto).
+   --------------------------------------------------------------------------- */
+
+:root {
+  --paper: #fbf8f2; /* la hoja */
+  --table: #efe9dd; /* la mesa bajo la hoja */
+  --surface: #f4efe5; /* controles del editor */
+  --surface-raised: #fbf8f2;
+  --rule: #ddd5c7; /* filetes de 1px */
+  --rule-strong: #c6bba7;
+  --ink: #16130f;
+  --ink-muted: #6d6455;
+  --ink-faint: #948a78;
+  --accent: #b4472c;
+  --accent-soft: #f0dbd3;
+  --accent-ink: #fbf8f2;
+  --danger: #8c3a2c;
+  --shadow-sheet: 0 1px 1px rgb(22 19 15 / 0.04), 0 12px 32px -12px
+    rgb(22 19 15 / 0.18);
+}
+
+:root[data-theme='dark'] {
+  --paper: #1c1915;
+  --table: #100e0c;
+  --surface: #1d1a16;
+  --surface-raised: #262119;
+  --rule: #38322a;
+  --rule-strong: #4e463a;
+  --ink: #f0eae0;
+  --ink-muted: #a49a89;
+  --ink-faint: #7d7364;
+  --accent: #e0705a;
+  --accent-soft: #40241d;
+  --accent-ink: #14120f;
+  --danger: #e0705a;
+  --shadow-sheet: 0 1px 1px rgb(0 0 0 / 0.3), 0 16px 40px -12px rgb(0 0 0 / 0.6);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-table: var(--table);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-rule: var(--rule);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+
+  --font-document: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-chrome: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+
+html {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--table);
+  color: var(--ink);
+  font-family: var(--font-chrome);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Un único anillo de foco para toda la app: acento, con holgura. */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Cifras tabulares en todo lo que sea dato: fechas, numeración de sección. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Etiqueta versalita del chrome del editor. */
+.eyebrow {
+  font-family: var(--font-chrome);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
