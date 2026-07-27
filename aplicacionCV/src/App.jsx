@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Workbench from './components/Workbench.jsx'
 import GeneralInfoSection from './components/general/GeneralInfoSection.jsx'
+import ProfileSection from './components/profile/ProfileSection.jsx'
 import EducationSection from './components/education/EducationSection.jsx'
 import ExperienceSection from './components/experience/ExperienceSection.jsx'
 import TechnicalSkillsSection from './components/skills/TechnicalSkillsSection.jsx'
@@ -12,6 +13,7 @@ import {
   SAMPLE_EDUCATION,
   SAMPLE_EXPERIENCE,
   SAMPLE_GENERAL,
+  SAMPLE_PROFILE,
   SAMPLE_SKILLS,
   SAMPLE_TRAITS,
 } from './lib/sampleCv.js'
@@ -25,6 +27,8 @@ const newId = () =>
 export default function App() {
   const [general, setGeneral] = useState(SAMPLE_GENERAL)
   const [generalEditing, setGeneralEditing] = useState(false)
+  const [profile, setProfile] = useState(SAMPLE_PROFILE)
+  const [profileEditing, setProfileEditing] = useState(false)
   const [education, setEducation] = useState(SAMPLE_EDUCATION)
   const [experience, setExperience] = useState(SAMPLE_EXPERIENCE)
   const [skills, setSkills] = useState(SAMPLE_SKILLS)
@@ -38,6 +42,12 @@ export default function App() {
     setGeneral(value)
     setGeneralEditing(false)
     signal('general')
+  }
+
+  function submitProfile(text) {
+    setProfile(text)
+    setProfileEditing(false)
+    signal('profile')
   }
 
   function addEducation(entry) {
@@ -100,6 +110,8 @@ export default function App() {
   function resetAll() {
     setGeneral(EMPTY_GENERAL)
     setGeneralEditing(true)
+    setProfile('')
+    setProfileEditing(true)
     setEducation([])
     setExperience([])
     setSkills([])
@@ -111,6 +123,8 @@ export default function App() {
   function loadSample() {
     setGeneral(SAMPLE_GENERAL)
     setGeneralEditing(false)
+    setProfile(SAMPLE_PROFILE)
+    setProfileEditing(false)
     setEducation(SAMPLE_EDUCATION)
     setExperience(SAMPLE_EXPERIENCE)
     setSkills(SAMPLE_SKILLS)
@@ -121,6 +135,7 @@ export default function App() {
 
   const isEmpty =
     !general.name &&
+    !profile &&
     education.length === 0 &&
     experience.length === 0 &&
     skills.length === 0 &&
@@ -137,12 +152,13 @@ export default function App() {
         onCancel={general.name ? () => setGeneralEditing(false) : undefined}
       />
 
-      <EducationSection
-        key={`education-${sessionKey}`}
-        items={education}
-        onAdd={addEducation}
-        onUpdate={updateEducation}
-        onRemove={removeEducation}
+      <ProfileSection
+        key={`profile-${sessionKey}`}
+        value={profile}
+        editing={profileEditing}
+        onSubmit={submitProfile}
+        onEdit={() => setProfileEditing(true)}
+        onCancel={profile ? () => setProfileEditing(false) : undefined}
       />
 
       <ExperienceSection
@@ -167,6 +183,14 @@ export default function App() {
         onRemove={removeTrait}
       />
 
+      <EducationSection
+        key={`education-${sessionKey}`}
+        items={education}
+        onAdd={addEducation}
+        onUpdate={updateEducation}
+        onRemove={removeEducation}
+      />
+
       <div className="rail__footer">
         <span className="eyebrow">Empezar de nuevo</span>
         {isEmpty ? (
@@ -186,6 +210,7 @@ export default function App() {
     <CvSheet
       general={general}
       education={education}
+      profile={profile}
       experience={experience}
       skills={skills}
       traits={traits}

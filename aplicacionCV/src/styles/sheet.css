@@ -149,6 +149,14 @@
   background: var(--rule);
 }
 
+.sheet-prose {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 70ch;
+}
+
 .sheet-entries {
   list-style: none;
   margin: 0;

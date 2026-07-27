@@ -4,7 +4,7 @@ import EducationEntryForm from './EducationEntryForm.jsx'
 export default function EducationSection({ items, onAdd, onUpdate, onRemove }) {
   return (
     <EntryListSection
-      number="02"
+      number="06"
       title="Formación"
       items={items}
       Form={EducationEntryForm}

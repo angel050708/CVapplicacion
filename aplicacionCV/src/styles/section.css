@@ -104,6 +104,13 @@
   letter-spacing: -0.01em;
 }
 
+.entry__prose {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
 .entry__secondary {
   font-size: 0.8125rem;
   color: var(--ink-muted);

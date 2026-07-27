@@ -13,6 +13,7 @@ function toLines(text) {
 
 export default function CvSheet({
   general,
+  profile,
   education,
   experience,
   skills,
@@ -26,6 +27,7 @@ export default function CvSheet({
   const contact = [general.email, general.phone].filter(Boolean)
   const isBlank =
     !hasName &&
+    !profile &&
     education.length === 0 &&
     experience.length === 0 &&
     skills.length === 0 &&
@@ -63,8 +65,15 @@ export default function CvSheet({
         </p>
       )}
 
+      {profile && (
+        <SheetSection title="Perfil" flashToken={tokenFor('profile')}>
+          <p className="sheet-prose">{profile}</p>
+        </SheetSection>
+      )}
+
       {sortedExperience.length > 0 && (
-        <SheetSection title="Experiencia" flashToken={tokenFor('experience')}>
+        <SheetSection title="Experiencia profesional"
+          flashToken={tokenFor('experience')}>
           <ul className="sheet-entries">
             {sortedExperience.map((item, index) => {
               const duties = toLines(item.duties)
@@ -95,28 +104,6 @@ export default function CvSheet({
         </SheetSection>
       )}
 
-      {sortedEducation.length > 0 && (
-        <SheetSection title="Formación" flashToken={tokenFor('education')}>
-          <ul className="sheet-entries">
-            {sortedEducation.map((item, index) => (
-              <li
-                key={item.id}
-                className="sheet-entry"
-                style={{ animationDelay: `${index * 40}ms` }}
-              >
-                <div className="sheet-entry__top">
-                  <span className="sheet-entry__primary">{item.degree}</span>
-                  <span className="sheet-entry__dates">
-                    {formatRange(item.start, item.end)}
-                  </span>
-                </div>
-                <div className="sheet-entry__org">{item.school}</div>
-              </li>
-            ))}
-          </ul>
-        </SheetSection>
-      )}
-
       {(skills.length > 0 || traits.length > 0) && (
         <div className="sheet-columns">
           {skills.length > 0 && (
@@ -137,6 +124,28 @@ export default function CvSheet({
             </SheetSection>
           )}
         </div>
+      )}
+
+      {sortedEducation.length > 0 && (
+        <SheetSection title="Formación" flashToken={tokenFor('education')}>
+          <ul className="sheet-entries">
+            {sortedEducation.map((item, index) => (
+              <li
+                key={item.id}
+                className="sheet-entry"
+                style={{ animationDelay: `${index * 40}ms` }}
+              >
+                <div className="sheet-entry__top">
+                  <span className="sheet-entry__primary">{item.degree}</span>
+                  <span className="sheet-entry__dates">
+                    {formatRange(item.start, item.end)}
+                  </span>
+                </div>
+                <div className="sheet-entry__org">{item.school}</div>
+              </li>
+            ))}
+          </ul>
+        </SheetSection>
       )}
     </article>
   )

@@ -5,7 +5,7 @@ export default function ExperienceSection({ items, onAdd, onUpdate, onRemove }) 
   return (
     <EntryListSection
       number="03"
-      title="Experiencia"
+      title="Experiencia profesional"
       items={items}
       Form={ExperienceEntryForm}
       describe={(item) => ({ primary: item.role, secondary: item.company })}

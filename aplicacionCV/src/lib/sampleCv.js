@@ -6,6 +6,9 @@ export const SAMPLE_GENERAL = {
   phone: '+34 600 12 34 56',
 }
 
+export const SAMPLE_PROFILE =
+  'Desarrolladora front-end con cinco años componiendo interfaces de producto. Me muevo bien entre el diseño y el código: sistemas de componentes, accesibilidad y rendimiento. Busco un equipo que cuide el detalle tanto como la entrega.'
+
 export const SAMPLE_EDUCATION = [
   {
     id: 'sample-edu-1',
