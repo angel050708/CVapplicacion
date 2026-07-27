@@ -3,9 +3,11 @@
 Editor de currículums. A la izquierda se rellenan los datos; a la derecha se
 compone la hoja en tiempo real, con proporción A4 y lista para imprimir.
 
-Cada sección alterna entre formulario y lectura: **Enviar** retira los campos y
-compone el texto en la hoja, **Editar** los devuelve con lo ya escrito para
-corregirlo y reenviarlo.
+Las secciones de datos —personales, formación y experiencia— alternan entre
+formulario y lectura: **Enviar** retira los campos y compone el texto en la
+hoja, **Editar** los devuelve con lo ya escrito para corregirlo y reenviarlo.
+Las de competencias funcionan como lista de términos: se escriben y se quitan
+uno a uno, y se componen al pie del currículum a dos columnas.
 
 Implementa el proyecto [CV Application](https://www.theodinproject.com/lessons/node-path-react-new-cv-application)
 de The Odin Project.
@@ -31,8 +33,9 @@ src/
     general/           sección 1: datos personales
     education/         sección 2: formación
     experience/        sección 3: experiencia
+    skills/            secciones 4 y 5: competencias técnicas y personales
     preview/           la hoja compuesta
-    ui/                campos, botones y el armazón de sección
+    ui/                campos, botones y los armazones de sección
   lib/                 formato de fechas y datos de ejemplo
   styles/              una hoja por componente, más tokens e impresión
 ```

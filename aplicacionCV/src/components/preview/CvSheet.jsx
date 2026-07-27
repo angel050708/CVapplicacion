@@ -1,6 +1,6 @@
-import { Fragment } from 'react'
 import SheetSection from './SheetSection.jsx'
 import FlashWash from './FlashWash.jsx'
+import TermList from './TermList.jsx'
 import { byMostRecent, formatRange } from '../../lib/dates.js'
 import '../../styles/sheet.css'
 
@@ -11,13 +11,25 @@ function toLines(text) {
     .filter(Boolean)
 }
 
-export default function CvSheet({ general, education, experience, flash }) {
+export default function CvSheet({
+  general,
+  education,
+  experience,
+  skills,
+  traits,
+  flash,
+}) {
   const tokenFor = (section) =>
     flash && flash.section === section ? flash.token : null
 
   const hasName = Boolean(general.name)
   const contact = [general.email, general.phone].filter(Boolean)
-  const isBlank = !hasName && education.length === 0 && experience.length === 0
+  const isBlank =
+    !hasName &&
+    education.length === 0 &&
+    experience.length === 0 &&
+    skills.length === 0 &&
+    traits.length === 0
 
   const sortedEducation = [...education].sort(byMostRecent)
   const sortedExperience = [...experience].sort(byMostRecent)
@@ -30,22 +42,17 @@ export default function CvSheet({ general, education, experience, flash }) {
           {hasName ? general.name : 'Tu nombre aquí'}
         </h2>
         {contact.length > 0 && (
-          <p className="sheet__contact">
-            {contact.map((item, index) => (
-              <Fragment key={item}>
-                {index > 0 && (
-                  <span className="sheet__contact-sep" aria-hidden="true">
-                    ·
-                  </span>
-                )}
-                {item.includes('@') ? (
-                  <a href={`mailto:${item}`}>{item}</a>
-                ) : (
-                  <a href={`tel:${item.replace(/\s/g, '')}`}>{item}</a>
-                )}
-              </Fragment>
-            ))}
-          </p>
+          <TermList
+            className="sheet__contact"
+            items={contact}
+            render={(item) =>
+              item.includes('@') ? (
+                <a href={`mailto:${item}`}>{item}</a>
+              ) : (
+                <a href={`tel:${item.replace(/\s/g, '')}`}>{item}</a>
+              )
+            }
+          />
         )}
       </header>
 
@@ -108,6 +115,28 @@ export default function CvSheet({ general, education, experience, flash }) {
             ))}
           </ul>
         </SheetSection>
+      )}
+
+      {(skills.length > 0 || traits.length > 0) && (
+        <div className="sheet-columns">
+          {skills.length > 0 && (
+            <SheetSection
+              title="Competencias técnicas"
+              flashToken={tokenFor('skills')}
+            >
+              <TermList className="sheet-terms" items={skills} />
+            </SheetSection>
+          )}
+
+          {traits.length > 0 && (
+            <SheetSection
+              title="Competencias personales"
+              flashToken={tokenFor('traits')}
+            >
+              <TermList className="sheet-terms" items={traits} />
+            </SheetSection>
+          )}
+        </div>
       )}
     </article>
   )

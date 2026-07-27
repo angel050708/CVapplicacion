@@ -7,8 +7,8 @@
    del orden de evaluación de los módulos y no es estable. El prefijo `html`
    sube un escalón de especificidad para que estas anulaciones ganen siempre. */
 @media print {
-  :root,
-  :root[data-theme='dark'] {
+  html:root,
+  html:root[data-theme='dark'] {
     --paper: #ffffff;
     --table: #ffffff;
     --ink: #000000;

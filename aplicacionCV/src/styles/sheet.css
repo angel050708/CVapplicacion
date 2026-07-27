@@ -96,8 +96,27 @@
   color: var(--accent);
 }
 
-.sheet__contact-sep {
+.term-sep {
   color: var(--rule-strong);
+}
+
+.sheet-terms {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3125rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* auto-fit reparte en dos columnas cuando caben y colapsa a una cuando no,
+   sin media queries: la hoja se escala y su ancho no sigue al del viewport. */
+.sheet-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0 2.5rem;
 }
 
 .sheet-section {

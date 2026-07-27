@@ -36,3 +36,19 @@ export const SAMPLE_EXPERIENCE = [
     end: '2022-02',
   },
 ]
+
+export const SAMPLE_SKILLS = [
+  'JavaScript',
+  'React',
+  'Vite',
+  'CSS moderno',
+  'Git',
+  'Figma',
+]
+
+export const SAMPLE_TRAITS = [
+  'Trabajo en equipo',
+  'Comunicación escrita',
+  'Atención al detalle',
+  'Autonomía',
+]
